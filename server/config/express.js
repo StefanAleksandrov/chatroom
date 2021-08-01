@@ -19,6 +19,7 @@ module.exports = function(app) {
 
     //Read data from req body
     app.use(express.urlencoded({extended: true}));
+    app.use(express.json());
 
     //Set and read cookies
     app.use(cookieParser());

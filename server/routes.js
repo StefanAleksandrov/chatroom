@@ -10,7 +10,7 @@ router.use('/api', apiController);
 
 router.get('*', (req, res) => {
     console.log('Request information: ', req.headers);
-    res.send('<div>This is my first</div><div>RESTfull API</div>');
+    res.status(404).send('<div>This is my first</div><div>RESTfull API</div>');
 });
 
 module.exports = router;

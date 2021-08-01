@@ -11,12 +11,10 @@ router.get('/', (req, res) => res.json({response: "REST API"}));
 //POST
 router.post('/register', (req, res) => {
     const {username, password} = req.body;
-    console.log(username, password);
 });
 
 router.post('/login', (req, res) => {
     const {username, password} = req.body;
-    console.log(username, password);
 });
 
 module.exports = router;

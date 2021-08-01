@@ -1,5 +1,5 @@
 const {SECRET, COOKIE_NAME} = require('../config/config');
-cosnt jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 module.exports = function auth(req, res, next) {
     let token = req.cookies[COOKIE_NAMEM];
