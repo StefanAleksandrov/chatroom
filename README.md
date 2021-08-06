@@ -6,7 +6,8 @@
 #### Login / Register pages
 
 ### Private part for registered users
-#### Online chatrooms listing page
+#### Online chatrooms listing page with edit / delete (if creator) and join / leave buttons
+#### Create / edit chat page
 #### Chatroom page with all the users and messages (read / unread)
 #### Profile page with info about joined chats and activity
 
