@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema({
         minlength: [5, "Password should be at least 5 symbols"],
     },
 
+    role: {
+        type: String,
+        default: "user",
+    },
+
     register_date: {
         type: String,
         default: new Date().toDateString(),
