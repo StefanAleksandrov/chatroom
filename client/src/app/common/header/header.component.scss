@@ -1,0 +1,52 @@
+header.app-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 0;
+
+    .logo {
+        width: 10%;
+        font-size: 1.75rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--white);
+        text-transform: uppercase;
+        transition: all 0.5s ease-in-out;
+
+        .logo-color {
+            font-size: 2rem;
+            color: var(--light-purple);
+        }
+    }
+
+    .logo:hover {
+        font-size: 2rem;
+    }
+
+    .app-navigation .app-navigation-list {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+
+        .app-navigation-list-item {
+            padding: 0.5rem 0.75rem;
+            height: 2.35rem;
+
+            &:hover {
+                border-top: 1px solid white;
+                border-bottom: 1px solid white;
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--white);
+                padding: 0.25rem 0.75rem;
+                font-weight: bold;
+
+                &.active-link {
+                    color: var(--light-purple);
+                }
+            }
+        }
+    }
+}
