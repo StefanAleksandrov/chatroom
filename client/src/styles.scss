@@ -3,8 +3,6 @@
 
 /* You can add global styles to this file, and also import other style files */
 body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     background: url(../public/images/background_image_1.jpg);
@@ -13,16 +11,33 @@ body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    overflow: hidden;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: inherit;
+    cursor: none;
+    user-select: none;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0 3rem;
+
+    main {
+        flex-grow: 1;
+    }
 }
 
 /* CSS Variables */
 :root {
     --white: #fff;
     --light-purple: #C5ACCD;
+    --green: #00FF0088;
+    --red: #FF000088;
+    --gray: #808077;
 }
