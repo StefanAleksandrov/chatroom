@@ -5,11 +5,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
+  public message: string = 'Hello World!';
+  public message_type: string = 'notification';
 
-  constructor() { }
+  // constructor(msg: string, msg_type: string) {
+  //   this.message = msg;
+  //   this.message_type = msg_type;
+  // }
 
-  ngOnInit(): void {
+  constructor() {}
+
+  hideMessage(): void {
+    this.message_type = "hide";
   }
 
 }
