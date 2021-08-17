@@ -6,11 +6,11 @@
 
     <nav class="app-navigation">
         <ul class="app-navigation-list">
-            <li class="app-navigation-list-item"><a routerLink="/about-us" routerLinkActive="active-link" >About us</a></li>
-            <li class="app-navigation-list-item"><a routerLink="/login" routerLinkActive="active-link" >Login</a></li>
-            <li class="app-navigation-list-item"><a routerLink="/register" routerLinkActive="active-link" >Register</a></li>
-            <li class="app-navigation-list-item"><a routerLink="/chatrooms" routerLinkActive="active-link" >Chatrooms</a></li>
-            <li class="app-navigation-list-item"><a routerLink="/profile" routerLinkActive="active-link" >Profile</a></li>
+            <li *ngIf="!isLogged" class="app-navigation-list-item"><a routerLink="/about-us" routerLinkActive="active-link" >About us</a></li>
+            <li *ngIf="!isLogged" class="app-navigation-list-item"><a routerLink="/login" routerLinkActive="active-link" >Login</a></li>
+            <li *ngIf="!isLogged" class="app-navigation-list-item"><a routerLink="/register" routerLinkActive="active-link" >Register</a></li>
+            <li *ngIf="isLogged" class="app-navigation-list-item"><a routerLink="/chatrooms" routerLinkActive="active-link" >Chatrooms</a></li>
+            <li *ngIf="isLogged" class="app-navigation-list-item"><a routerLink="/profile" routerLinkActive="active-link" >Profile</a></li>
         </ul>
     </nav>
 </header>
