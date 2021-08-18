@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['../login/login.component.scss']
+  // styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+  checkoutForm = this.formBuilder.group({
+    email: '',
+    password: '',
+    "repeat-password": ''
+  });
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
-  ngOnInit(): void {
+  register() {
+
   }
-
 }
