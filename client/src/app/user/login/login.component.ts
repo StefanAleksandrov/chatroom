@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,19 +8,15 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  checkoutForm = this.formBuilder.group({
-    email: '',
-    password: ''
-  });
 
   constructor(
-    private formBuilder: FormBuilder
+    private userService: UserService,
+    private router: Router
   ) {}
 
-  login(event: Event): void {
-    // event.preventDefault();
-
-    console.log("HERE");
-    console.log(this.checkoutForm);
+  login(email: string, password: string): void {
+    const user = this.userService.login(email, password)
+    console.log(user);
+    this.router.navigate(['/']);
   }
 }

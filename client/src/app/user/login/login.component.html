@@ -1,15 +1,15 @@
 <section class="login-form">
     <h2 class="login-heading">Login</h2>
 
-    <form (ngSubmit)="login($event)" [formGroup]="checkoutForm" >
+    <form (ngSubmit)="login(email.value, password.value)" >
         <label class="login-field">
             <span>Username:</span>
-            <input type="email" name="email" placeholder="john@doe.com" formControllerName="email" />
+            <input type="email" name="email" placeholder="john@doe.com" #email required email />
         </label>
 
         <label class="login-field">
             <span>Password:</span>
-            <input type="password" name="password" placeholder="***********" formControllerName="password" />
+            <input type="password" name="password" placeholder="***********" #password required minlength="3" />
         </label>
 
         <input class="login-field submit" type="submit" value="submit" />
