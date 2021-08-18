@@ -34,11 +34,6 @@ header.app-header {
             padding: 0.5rem 0.75rem;
             height: 2.35rem;
 
-            &:hover {
-                border-top: 1px solid var(--white);
-                border-bottom: 1px solid var(--white);
-            }
-
             a {
                 text-decoration: none;
                 color: var(--white);
