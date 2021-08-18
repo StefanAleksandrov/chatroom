@@ -11,6 +11,7 @@
             <li *ngIf="!isLogged" class="app-navigation-list-item"><a routerLink="/register" routerLinkActive="active-link" >Register</a></li>
             <li *ngIf="isLogged" class="app-navigation-list-item"><a routerLink="/chatrooms" routerLinkActive="active-link" >Chatrooms</a></li>
             <li *ngIf="isLogged" class="app-navigation-list-item"><a routerLink="/profile" routerLinkActive="active-link" >Profile</a></li>
+            <li *ngIf="isLogged" class="app-navigation-list-item"><a routerLink="/profile" (click)="logout" >Logout</a></li>
         </ul>
     </nav>
 </header>
