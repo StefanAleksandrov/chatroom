@@ -1,1 +1,17 @@
-<p>login works!</p>
+<section class="login-form">
+    <h2 class="login-heading">Login</h2>
+
+    <form (ngSubmit)="login($event)" [formGroup]="checkoutForm" >
+        <label class="login-field">
+            <span>Username:</span>
+            <input type="email" name="email" placeholder="john@doe.com" formControllerName="email" />
+        </label>
+
+        <label class="login-field">
+            <span>Password:</span>
+            <input type="password" name="password" placeholder="***********" formControllerName="password" />
+        </label>
+
+        <input class="login-field submit" type="submit" value="submit" />
+    </form>
+</section>

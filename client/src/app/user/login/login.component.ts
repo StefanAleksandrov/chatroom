@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  checkoutForm = this.formBuilder.group({
+    email: '',
+    password: ''
+  });
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit(): void {
+  login(event: Event): void {
+    // event.preventDefault();
+
+    console.log("HERE");
+    console.log(this.checkoutForm);
   }
-
 }
