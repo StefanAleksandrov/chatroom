@@ -1,0 +1,26 @@
+p {
+    position: absolute;
+    top: 4rem;
+    right: 2rem;
+    padding: 1rem 3rem;
+    width: fit-content;
+    border-radius: 4px;
+    color: var(--white);
+    font-weight: bold;
+
+    &.success {
+        background-color: var(--green);
+    }
+
+    &.error {
+        background-color: var(--red);
+    }
+
+    &.notification {
+        background-color: var(--gray);
+    }
+
+    &.hide {
+        display: none;
+    }
+}

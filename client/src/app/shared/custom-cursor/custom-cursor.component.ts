@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { fromEvent } from 'rxjs';
 
 @Component({
@@ -8,9 +7,9 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./custom-cursor.component.scss']
 })
 export class CustomCursorComponent implements OnInit {
-  public pageX: number
-  public pageY: number
-  public class: string
+  pageX: number
+  pageY: number
+  class: string
 
   constructor() {
     this.pageX = 960;

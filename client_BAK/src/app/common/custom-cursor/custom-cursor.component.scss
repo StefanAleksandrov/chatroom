@@ -1,0 +1,58 @@
+.cursor {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: 1px solid var(--white);
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursor-animation 0.5s infinite alternate;
+    pointer-events: none;
+
+    &::after {
+        content: '';
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: -0.55rem;
+        left: -0.55rem;
+        border: 0.5rem solid var(--gray);
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: cursor-animation-two 0.5s infinite alternate;
+    }
+}
+
+.expand {
+    border: 1px solid var(--red);
+    animation: cursor-animation-three 0.5s forwards;
+}
+
+@keyframes cursor-animation {
+    from {
+        transform: scale(1);
+    } to {
+        transform: scale(0.75);
+    }
+}
+
+@keyframes cursor-animation-two {
+    from {
+        transform: scale(1);
+    } to {
+        transform: scale(0.6);
+    }
+}
+
+@keyframes cursor-animation-three {
+    0% {
+        transform: scale(1);
+    } 25% {
+        transform: scale(0.25);
+    } 75% {
+        transform: scale(2);
+    } 100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+}

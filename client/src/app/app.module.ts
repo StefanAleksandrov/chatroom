@@ -1,33 +1,25 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Modules
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import { AuthModule } from './auth/auth.module';
 import { ChatroomsModule } from './chatrooms/chatrooms.module';
+import { SharedModule } from './shared/shared.module';
 
-import { CustomCursorComponent } from './common/custom-cursor/custom-cursor.component';
-import { FooterComponent } from './common/footer/footer.component';
-import { HeaderComponent } from './common/header/header.component';
-import { NotificationComponent } from './common/notification/notification.component';
-
-import { UserModule } from './user/user.module';
+// Components
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NotificationComponent,
-    CustomCursorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    UserModule,
-    CommonModule,
-    ChatroomsModule
+    AuthModule,
+    SharedModule,
+    ChatroomsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

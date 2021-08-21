@@ -1,0 +1,17 @@
+<section class="login-form">
+    <h2 class="login-heading">Login</h2>
+
+    <form (onsubmit)="login($event)" >
+        <label class="login-field">
+            <span>Username:</span>
+            <input type="email" name="email" placeholder="john@doe.com" #email />
+        </label>
+
+        <label class="login-field">
+            <span>Password:</span>
+            <input type="password" name="password" placeholder="***********" #password />
+        </label>
+
+        <input class="login-field submit" type="submit" value="submit" />
+    </form>
+</section>

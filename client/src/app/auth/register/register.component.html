@@ -1,0 +1,22 @@
+<section class="register-form">
+    <h2 class="register-heading">Register</h2>
+
+    <form (ngSubmit)="register()" >
+        <label class="register-field">
+            <span>Username:</span>
+            <input type="email" name="email" placeholder="john@doe.com" />
+        </label>
+
+        <label class="register-field">
+            <span>Password:</span>
+            <input type="password" name="password" placeholder="***********" />
+        </label>
+
+        <label class="register-field">
+            <span>Repeat Password:</span>
+            <input type="repeat-password" name="repeat-password" placeholder="***********" />
+        </label>
+
+        <input class="register-field submit" type="submit" value="submit" />
+    </form>
+</section>

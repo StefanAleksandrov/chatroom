@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule as CModule } from '@angular/common';  
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +18,7 @@ import { CustomCursorComponent } from './custom-cursor/custom-cursor.component';
     CustomCursorComponent
   ],
   imports: [
-    CommonModule
+    CModule
   ]
 })
 export class CommonModule { }
