@@ -7,17 +7,24 @@ import { ChatroomRoutingModule } from './chatroom-routing.module';
 // Components
 import { ChatroomListComponent } from './chatroom-list/chatroom-list.component';
 import { ChatroomDetailsComponent } from './chatroom-details/chatroom-details.component';
+import { ChatroomCardComponent } from './chatroom-card/chatroom-card.component';
+import { ChatroomCreateComponent } from './chatroom-create/chatroom-create.component';
 
 
 
 @NgModule({
   declarations: [
     ChatroomListComponent,
-    ChatroomDetailsComponent
+    ChatroomDetailsComponent,
+    ChatroomCardComponent,
+    ChatroomCreateComponent
   ],
   imports: [
     CommonModule,
     ChatroomRoutingModule
+  ],
+  exports: [
+    ChatroomCardComponent
   ]
 })
 export class ChatroomsModule { }
