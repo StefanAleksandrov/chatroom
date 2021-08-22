@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes');
+const cors = require('./middlewares/cors');
+
+//CORS settings
+app.use(cors);
 
 //Error handling
 const globalErrorHandler = require('./middlewares/globalErrorHandler');
