@@ -9,6 +9,7 @@ import { ChatroomListComponent } from './chatroom-list/chatroom-list.component';
 import { ChatroomDetailsComponent } from './chatroom-details/chatroom-details.component';
 import { ChatroomCardComponent } from './chatroom-card/chatroom-card.component';
 import { ChatroomCreateComponent } from './chatroom-create/chatroom-create.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,6 +21,7 @@ import { ChatroomCreateComponent } from './chatroom-create/chatroom-create.compo
     ChatroomCreateComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     ChatroomRoutingModule
   ],
