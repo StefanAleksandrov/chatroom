@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LocalStorage } from './injection-tokens';
+import { ChatroomsModule } from '../chatrooms/chatrooms.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LocalStorage } from './injection-tokens';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ChatroomsModule
   ],
   exports: [
     CustomCursorComponent,
