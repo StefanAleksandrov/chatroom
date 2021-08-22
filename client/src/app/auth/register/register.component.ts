@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,12 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  register(): void {
+  register(form: NgForm): void {
+    const {email, password, "repeat-password": repeatPassword} = form.value;
 
+    if (!/^\S+@\S+\.\S+$/.test(email)) return;
+
+    if (password != repeatPassword) {
+      return; // Maybe add notification?
+
+    } else {
+      this.authService.register(email, password, repeatPassword).subscribe(user => {
+        this.router.navigate(['/login']);
+      });
+    }
   }
 }

@@ -1,22 +1,37 @@
 <section class="register-form">
     <h2 class="register-heading">Register</h2>
 
-    <form (ngSubmit)="register()" >
+    <form #form="ngForm" (ngSubmit)="register(form)" >
         <label class="register-field">
-            <span>Username:</span>
-            <input type="email" name="email" placeholder="john@doe.com" />
+            <span>Email:</span>
+            <input #emailInput="ngModel" ngModel type="email" name="email" placeholder="john@doe.com" required email />
+
+            <section *ngIf="emailInput.touched" class="error-holder">
+                <p *ngIf="emailInput.errors?.required" class="error">Email is required</p>
+                <p *ngIf="emailInput.errors?.email" class="error">Please provide valid email</p>
+            </section>
         </label>
 
         <label class="register-field">
             <span>Password:</span>
-            <input type="password" name="password" placeholder="***********" />
+            <input #passInput="ngModel" ngModel type="password" name="password" placeholder="***********" required [minlength]="5" />
+            
+            <section *ngIf="passInput.touched" class="error-holder">
+                <p *ngIf="passInput.errors?.required" class="error">Password is required</p>
+                <p *ngIf="passInput.errors?.minlength" class="error">Password should be 5 symbols or more</p>
+            </section>
         </label>
 
         <label class="register-field">
             <span>Repeat Password:</span>
-            <input type="repeat-password" name="repeat-password" placeholder="***********" />
+            <input #repassInput="ngModel" ngModel type="password" name="repeat-password" placeholder="***********" required [minlength]="5" />
+            
+            <section *ngIf="repassInput.touched" class="error-holder">
+                <p *ngIf="repassInput.errors?.required" class="error">Repeat Password is required</p>
+                <p *ngIf="repassInput.errors?.minlength" class="error">Repeat Password should be 5 symbols or more</p>
+            </section>
         </label>
 
-        <input class="register-field submit" type="submit" value="submit" />
+        <input class="register-field submit" type="submit" value="submit" [disabled]="(emailInput.errors?.required || emailInput.errors?.email) || (passInput.errors?.required || passInput.errors?.minlength) || (repassInput.errors?.required || repassInput.errors?.minlength)" />
     </form>
 </section>
