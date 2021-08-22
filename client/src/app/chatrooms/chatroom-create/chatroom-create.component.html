@@ -1,1 +1,38 @@
-<p>chatroom-create works!</p>
+<section class="register-form">
+    <h2 class="register-heading">Create Chatroom</h2>
+
+    <form #form="ngForm" (ngSubmit)="createChatroom(form)" >
+        <label class="register-field">
+            <span>Chatroom Name:</span>
+            <input #nameInput="ngModel" ngModel type="text" name="name" required [minlength]="4" />
+
+            <section *ngIf="nameInput.touched" class="error-holder">
+                <p *ngIf="nameInput.errors?.required" class="error">The Name is required</p>
+                <p *ngIf="nameInput.errors?.minlength" class="error">The Name should be 4 symbols or more</p>
+            </section>
+        </label>
+
+        <label class="register-field">
+            <span>Chatroom Description:</span>
+            <input #descriptionInput="ngModel" ngModel type="text" name="description" required [minlength]="10" />
+            
+            <section *ngIf="descriptionInput.touched" class="error-holder">
+                <p *ngIf="descriptionInput.errors?.required" class="error">The Description is required</p>
+                <p *ngIf="descriptionInput.errors?.minlength" class="error">The Description should be 10 symbols or more</p>
+            </section>
+        </label>
+
+        <label class="register-field">
+            <span>Chatroom Image URL:</span>
+            <input #imageInput="ngModel" ngModel type="text" name="image" required [minlength]="5" url />
+            
+            <section *ngIf="imageInput.touched" class="error-holder">
+                <p *ngIf="imageInput.errors?.required" class="error">The Image URL is required</p>
+                <p *ngIf="imageInput.errors?.minlength" class="error">The Image URL should be 5 symbols or more</p>
+                <p *ngIf="imageInput.errors?.url" class="error">The Image URL should be valid url</p>
+            </section>
+        </label>
+
+        <input class="register-field submit" type="submit" value="submit" [disabled]="(nameInput.errors?.required || nameInput.errors?.minlength) || (descriptionInput.errors?.required || descriptionInput.errors?.minlength) || (imageInput.errors?.required || imageInput.errors?.minlength)" />
+    </form>
+</section>
