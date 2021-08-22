@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
 
     register_date: {
         type: String,
-        default: new Date().toDateString(),
+        default: new Date().toString(),
     },
 });
 
