@@ -1,0 +1,98 @@
+.chatrooms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 10rem 0;
+    background-color: var(--white-opacity);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .chats {
+        flex-basis: 30%;
+        background-color: var(--dark-purple);
+        overflow-y: auto;
+        scroll-padding-bottom: 10rem;
+        height: 40rem;
+
+        .chat {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1.75rem 2rem;
+            border-bottom: 1px solid var(--white);
+
+            &.active {
+                background-color: var(--purple);
+            }
+
+            &:last-of-type {
+                border: none;
+            }
+
+            .chat-img {
+                border-radius: 75px;
+                border: none;
+                margin: 0 1rem;
+            }
+
+            .add-new-img {
+                min-width: 80px;
+                height: 80px;
+                border-radius: 40px;
+                background-color: var(--white);
+                margin: 0 1rem;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    width: 60px;
+                    height: 6px;
+                    background-color: var(--dark-purple);
+                    position: absolute;
+                    left: 10px;
+                    top: 37px;
+                }
+
+                &::after {
+                    content: "";
+                    width: 6px;
+                    height: 60px;
+                    background-color: var(--dark-purple);
+                    position: absolute;
+                    left: 37px;
+                    top: 10px;
+                }
+            }
+
+            .chat-details {
+                color: var(--white);
+                padding: 0 1rem;
+
+                .chat-details-heading {
+                    margin: 0.25rem 0;
+                    font-size: 1.5rem;
+                }
+
+                .chat-details-desc {
+                    margin: 0;
+                    opacity: 0.8;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    .active-chat,
+    .active-chat.none {
+        flex-basis: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .no-active-chat {
+            width: 40%;
+            height: auto;
+            color: var(--light-purple);
+        }
+    }
+}
