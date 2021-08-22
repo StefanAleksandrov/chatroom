@@ -45,7 +45,9 @@ body {
     --light-purple: #C5ACCD;
     --dark-purple: #816C98;
     --green: #00FF0088;
+    --light-green: #d0ecd088;
     --red: #FF000088;
+    --light-red: #eed9d988;
     --gray: #808077;
 }
 
@@ -89,6 +91,20 @@ body {
             border: none;
             font-size: 2rem;
             background-color: var(--lighter-purple);
+
+            &.ng-invalid.ng-touched {
+                background-color: var(--light-red);
+                border-left: 0.5rem solid var(--red);
+                padding-left: 4.5rem;
+                color: var(--white);
+            }
+
+            &.ng-valid.ng-touched {
+                background-color: var(--light-green);
+                border-left: 0.5rem solid var(--green);
+                padding-left: 4.5rem;
+                color: var(--white);
+            }
         }
 
         &.submit{
@@ -96,10 +112,31 @@ body {
             padding: 0.5rem 5rem;
             border-radius: 5px;
             border: none;
-            margin-top: 2rem;
+            margin-top: 3rem;
             background-color: var(--dark-purple);
             color: var(--white);
             text-transform: uppercase;
+            font-weight: bold;
+
+            &[disabled] {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .error-holder {
+        position: relative;
+        width: 100%;
+
+        .error {
+            width: 100%;
+            text-align: center;
+            color: var(--red);
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.25rem;
             font-weight: bold;
         }
     }
