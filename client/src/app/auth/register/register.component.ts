@@ -19,8 +19,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   register(form: NgForm): void {
     const {email, password, "repeat-password": repeatPassword} = form.value;
@@ -29,24 +28,20 @@ export class RegisterComponent implements OnInit {
       this.notificationService.setNotification({
         message: "Please provide a valid email",
         type: "error"
-      })
-      return;
-    }
+      });
 
-    if (password != repeatPassword) {
+    } else if (password != repeatPassword) {
       this.notificationService.setNotification({
         message: "Passwords should match",
         type: "error"
-      })
-
-      return;
+      });
 
     } else {
       this.authService.register(email, password, repeatPassword).subscribe(() => {
         this.notificationService.setNotification({
           message: "Successful registration",
           type: "success"
-        })
+        });
 
         this.router.navigate(['/login']);
       }, error => {
