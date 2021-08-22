@@ -1,15 +1,25 @@
 <section class="login-form">
     <h2 class="login-heading">Login</h2>
 
-    <form (onsubmit)="login($event)" >
+    <form #form="ngForm" (ngSubmit)="login(form)" >
         <label class="login-field">
             <span>Username:</span>
-            <input type="email" name="email" placeholder="john@doe.com" #email />
+            <input #emailInput="ngModel" ngModel type="email" name="email" placeholder="john@doe.com" required email />
+
+            <section *ngIf="emailInput.touched" class="error-holder">
+                <p *ngIf="emailInput.errors?.required" class="error">Email is required</p>
+                <p *ngIf="emailInput.errors?.email" class="error">Please provide valid email</p>
+            </section>
         </label>
 
         <label class="login-field">
             <span>Password:</span>
-            <input type="password" name="password" placeholder="***********" #password />
+            <input #passInput="ngModel" ngModel type="password" name="password" placeholder="***********" required [minlength]="5" />
+            
+            <section *ngIf="passInput.touched" class="error-holder">
+                <p *ngIf="passInput.errors?.required" class="error">Password is required</p>
+                <p *ngIf="passInput.errors?.minlength" class="error">Password should be 5 symbols or more</p>
+            </section>
         </label>
 
         <input class="login-field submit" type="submit" value="submit" />
