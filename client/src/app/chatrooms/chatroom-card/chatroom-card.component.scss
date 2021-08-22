@@ -1,0 +1,72 @@
+section.card {
+    background-color: var(--white-opacity);
+    margin: 0 1rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 345px;
+
+    .card-img {
+        max-width: 100%;
+        object-fit: cover;
+    }
+
+    .card-heading {
+        padding: 0 0.5rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 2rem;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: var(--purple);
+    }
+
+    .card-description {
+        margin: 0;
+        padding: 0 0.5rem;
+        height: 90px;
+        text-align: center;
+        font-size: 1.5rem;
+        white-space: wrap;
+    }
+
+    .card-date {
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .modify {
+        display: flex;
+        justify-content: space-around;
+
+        .edit {
+            background-color: var(--light-red);
+            color: var(--yellow);
+            border: none;
+            border-right: 1px solid var(--white);
+            flex-basis: 50%;
+        }
+
+        .delete {
+            background-color: var(--light-red);
+            color: var(--red);
+            border: none;
+            flex-basis: 50%;
+        }
+    }
+
+    button {
+        font-size: 1.5rem;
+        padding: 0.5rem 1.5rem 0.7rem;
+
+        &.join,
+        &.leave {
+            background-color: var(--light-red);
+            color: var(--dark-purple);
+            border: none;
+        }
+    }
+}
