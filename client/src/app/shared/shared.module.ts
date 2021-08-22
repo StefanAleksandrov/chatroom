@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LocalStorage } from './injection-tokens';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FooterComponent,
     HeaderComponent,
     NotificationComponent,
+  ],
+  providers: [
+    {
+      provide: LocalStorage,
+      useValue: window.localStorage
+    }
   ]
 })
 export class SharedModule { }
