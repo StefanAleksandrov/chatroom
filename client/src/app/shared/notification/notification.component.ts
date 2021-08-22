@@ -7,7 +7,7 @@ import { NotificationService } from '../notification.service';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
 
   get notification(): INotification | undefined {
     return this.notificationService.getNotification();
@@ -17,14 +17,7 @@ export class NotificationComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
-    setTimeout((): void => {
-      this.notificationService.setNotification({
-        message: "Hello world!",
-        type: 'success'
-      });
-    }, 1000);
+  hideMessage(): void {
+    this.notificationService.removeNotification();
   }
-
-  hideMessage(): void {}
 }

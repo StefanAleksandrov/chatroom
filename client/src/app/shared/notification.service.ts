@@ -19,7 +19,11 @@ export class NotificationService {
     this.notification = payload;
 
     setTimeout((): void => {
-      this.notification = undefined;
+      this.removeNotification();
     }, 3000);
+  }
+
+  removeNotification() :void {
+    this.notification = undefined;
   }
 }
