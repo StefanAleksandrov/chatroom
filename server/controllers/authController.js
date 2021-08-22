@@ -10,47 +10,47 @@ const authService = require('../services/authService');
 
 //POST
 router.post('/register', (req, res, next) => {
-    const { username, password, repeatPassword } = req.body;
+    const { email, password, repeatPassword } = req.body;
 
     //Check if the request body has all the required information
-    if (!username || !password || !repeatPassword) return void res.status(401).json({message: "Provide all required information!"}).send();
+    if (!email || !password || !repeatPassword) return void res.status(400).json({message: "Provide all required information!"}).send();
     //Check if the passwords match each other
-    if (password != repeatPassword) return void res.status(401).json({message: "Passwords should match"}).send();
+    if (password != repeatPassword) return void res.status(400).json({message: "Passwords should match"}).send();
 
-    authService.getUserByUsername(username.toLowerCase())
+    authService.getUserByEmail(email.toLowerCase())
         .then(user => {
-            //Check if user with this username already exists and if so return error
+            //Check if user with this email already exists and if so return error
             if (user) throw ({message: "User already exists", status: 409});
             //Else attempt to create new user
-            else return authService.register(username.toLowerCase(), password);
+            else return authService.register(email.toLowerCase(), password);
         })
-        .then(data => res.status(201).json({ message: "success", user: data }).send())
+        .then(data => res.status(201).json({ message: "success", user: {email: data.email, id: data._id} }).send())
         .catch(next);
 });
 
 router.post('/login', (req, res, next) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     //Check if the request body has all the required information
-    if (!username || !password) return void res.status(401).json({message: "Provide all required information!"}).send();
+    if (!email || !password) return void res.status(400).json({message: "Provide all required information!"}).send();
 
-    authService.login(username, password)
+    authService.login(email, password)
         .then(data => {
-            res.status(201)
-                .cookie(COOKIE_NAME, data[0], { httpOnly: true })
-                .cookie('username', data[1].username)
-                .json({ message: "success", user: data[1] })
-                .send();
+            res.status(200)
+                // .cookie(COOKIE_NAME, data[0], {HttpOnly: true, path:"/login", secure: false, SameSite: "None"})
+                // .cookie("email", data[1].email, {HttpOnly: true, path:"/login", secure: false, SameSite: "None"})
+                .json({ token: data[0], user: data[1] });
+                // .send();
         })
         .catch(next);
 });
 
 router.post('/logout', (req, res, next) => {
     res.status(200)
-        .cookie(COOKIE_NAME, data[0], { httpOnly: true })
-        .cookie('username', data[1].username)
-        .json({ message: "success" })
-        .send();
+        // .cookie(COOKIE_NAME, data[0], { httpOnly: true })
+        // .cookie('email', data[1].email)
+        .json({ message: "success" });
+        // .send();
 });
 
 module.exports = router;
