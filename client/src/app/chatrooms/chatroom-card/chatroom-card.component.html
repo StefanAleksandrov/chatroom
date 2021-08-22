@@ -2,7 +2,7 @@
     <img class="card-img" [src]="chatroom!.image" [alt]="chatroom!.name" width="345" height="200">
     <h2 class="card-heading">{{chatroom!.name}}</h2>
     <p class="card-description">{{chatroom!.description}}</p>
-    <p class="card-date">{{chatroom!.created_at | date : 'MM/dd/YYYY, h:mm a'}}</p>
+    <p class="card-date">{{chatroom!.created_at | date : 'MM/dd/YYYY, HH:mm:ss'}}</p>
 
     <section class="modify">
         <button class="edit">Edit</button>
