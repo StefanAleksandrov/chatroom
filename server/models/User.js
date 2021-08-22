@@ -2,17 +2,19 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../config/config');
 
+const Chatroom = require('./Chatroom');
+
 const UserSchema = new mongoose.Schema({
-    username: {
+    email: {
         type: String,
         required: true,
         unique: true,
-        minlength: [3, "The username should be at least 4 characters long."],
+        minlength: [4, "The email should be at least 4 characters long."],
         validate: {
             validator: (value) => {
-                return !(/((?![a-zA-Z0-9]).)/.test(value));
+                return (/^\S+@\S+\.\S+$/.test(value));
             },
-            message: "The username should consist of english letters and digits only"
+            message: "The email is not valid"
         }
     },
 
@@ -21,6 +23,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
         minlength: [5, "Password should be at least 5 symbols"],
     },
+
+    chatrooms: [{
+        type: mongoose.Types.ObjectId,
+        ref: Chatroom
+    }],
 
     role: {
         type: String,
@@ -38,7 +45,7 @@ UserSchema.pre('save', function (next) {
         .then(salt => bcrypt.hash(this.password, salt))
         .then(hash => {
             this.password = hash;
-            this.username = this.username.toLowerCase();
+            this.email = this.email.toLowerCase();
             next();
         })
         .catch(next);
