@@ -1,7 +1,7 @@
 export interface IUser {
-    chatrooms: number[],
-    email: string;
-    register_date: string,
-    role: string,
     _id: string
+    email: string;
+    role: string,
+    register_date: string,
+    chatrooms: number[],
 }
