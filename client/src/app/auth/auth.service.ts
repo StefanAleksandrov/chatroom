@@ -4,8 +4,11 @@ import { Inject, Injectable } from '@angular/core';
 // Interfaces
 import { IUser } from '../shared/interfaces';
 
-import { environment } from '../../environments/environment';
+// Local Storage
 import { LocalStorage } from '../shared/injection-tokens';
+
+// Environment const
+import { environment } from '../../environments/environment';
 const API_URL = environment.apiURL;
 
 @Injectable({
