@@ -15,3 +15,13 @@
 ### Custom server made with Node.js, Express and Mongoose (MongoDB)
 ### Custom authentication using cookies and JWT
 ### RESTfull API for managing chatrooms and messages
+
+## Starting the project
+### Client
+#### Navigate to /client folder in the terminal
+#### Type "npm install" to get all the dependencies
+#### Type in "ng s" to serve the app on port 4200
+### Server
+#### Navigate to /server folder in the terminal
+#### Type "npm install" to get all the dependencies
+#### Type in "npm run start" to start the api server on port 8080
