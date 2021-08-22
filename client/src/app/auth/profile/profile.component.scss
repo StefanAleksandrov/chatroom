@@ -1,0 +1,49 @@
+.profile-page {
+    margin: 5rem 10rem 0;
+    display: flex;
+    color: var(--light-purple);
+
+    .profile-img {
+        flex-basis: 20%;
+        border-radius: 50%;
+        mix-blend-mode: multiply;
+    }
+
+    .profile-general-info {
+        flex: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+            text-align: center;
+            color: var(--white);
+        }
+
+        p {
+            text-align: center;
+            color: var(--purple);
+            font-weight: bold;
+        }
+    }
+
+    .profile-chat-info {
+        flex: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+            text-align: center;
+            color: var(--white);
+        }
+
+        p {
+            text-align: center;
+            color: var(--purple);
+            font-weight: bold;
+        }
+    }
+}
