@@ -31,6 +31,15 @@ const auth = {
 
     getUserByEmail(email) {
         return User.findOne({email});
+    },
+
+    addUserChatroom(_id, chatroomId) {
+        User.findOne({_id})
+            .then(user => {
+                user.chatrooms.push(chatroomId);
+                user.save();
+                console.log(user);
+            });
     }
 }
 

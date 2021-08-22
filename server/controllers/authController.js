@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { COOKIE_NAME } = require('../config/config');
+// const { COOKIE_NAME } = require('../config/config');
 
 //Services
 const authService = require('../services/authService');
