@@ -11,9 +11,5 @@ export class ChatroomCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.chatroom);
-    
-  }
-
+  ngOnInit(): void {}
 }
