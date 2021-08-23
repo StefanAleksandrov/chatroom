@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
 
     register_date: {
         type: String,
-        default: new Date().toString(),
+        default: Date.now
     },
 });
 

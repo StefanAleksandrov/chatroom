@@ -1,7 +1,10 @@
+const mongoose = require('mongoose');
+
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { SECRET } = require("../config/config");
+const Chatroom = require('../models/Chatroom');
 
 const auth = {
     register(email, password) {
@@ -34,12 +37,10 @@ const auth = {
     },
 
     addUserChatroom(_id, chatroomId) {
-        User.findOne({_id})
-            .then(user => {
-                user.chatrooms.push(chatroomId);
-                user.save();
-                console.log(user);
-            });
+        User.findById(_id).then(user => {
+            user.chatrooms.push(chatroomId);
+            return user.update();
+        })
     }
 }
 
