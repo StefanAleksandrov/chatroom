@@ -15,8 +15,7 @@ export class LoginComponent {
   ) {}
 
   login(email: string, password: string): void {
-    const user = this.userService.login(email, password)
-    console.log(user);
+    this.userService.login(email, password)
     this.router.navigate(['/']);
   }
 }
