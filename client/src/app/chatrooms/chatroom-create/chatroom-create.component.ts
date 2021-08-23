@@ -25,7 +25,6 @@ export class ChatroomCreateComponent implements OnInit {
   }
 
   createChatroom(form :NgForm) {
-    console.log(form.value);
     const {name, description, image} = form.value;
     const user = this.authService.getUser();
     const creator = user?._id;
