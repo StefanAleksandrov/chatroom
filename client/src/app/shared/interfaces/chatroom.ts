@@ -3,7 +3,7 @@ export interface IChatroom {
     name: string;
     description: string;
     image: string;
-    owner_id: string[];
+    creator: string;
     members: string[];
     messages: string[];
     created_at: string;
