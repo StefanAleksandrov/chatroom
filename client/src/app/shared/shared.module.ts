@@ -11,6 +11,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LocalStorage } from './injection-tokens';
 import { ChatroomsModule } from '../chatrooms/chatrooms.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ChatroomsModule } from '../chatrooms/chatrooms.module';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ChatroomsModule
   ],
   exports: [
