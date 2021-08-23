@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { NgForm } from '@angular/forms';
+
+// Interfaces
 import { IChatroom } from '../interfaces/chatroom';
+
+// Services
+import { AuthService } from 'src/app/auth/auth.service';
+import { ChatroomService } from 'src/app/chatrooms/chatroom.service';
 
 @Component({
   selector: 'app-home',
@@ -11,39 +17,96 @@ import { IChatroom } from '../interfaces/chatroom';
 export class HomeComponent implements OnInit {
   pages: number[];
   activepage: number;
+  chatRooms: IChatroom[] | undefined;
+  search: string;
+  noChatroom: IChatroom;
 
   get isLogged(): boolean {
     return this.authService.isLogged();
   }
 
-  get chatRooms(): IChatroom[] {
-    return [
-      {name: "test1", description: "desc test", image: 'https://media.wired.com/photos/5bb6accf0abf932caf294b18/125:94/w_2375,h_1786,c_limit/waves-730260985.jpg', owner_id: ["asd"], members: ["asd"], messages: [], created_at: new Date().toString(), _id: "asdasda124531"},
-      {name: "test2", description: "desc test", image: 'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/A-Alamy-BXWK5E_vvmkuf.jpg', owner_id: ["asd"], members: ["asd"], messages: [], created_at: new Date().toString(), _id: "65a4sd21as56d"},
-      {name: "test3", description: "desc test desc test desc test desc test", image: 'https://i.hurimg.com/i/hdn/75/0x0/5dcd630a0f25441794d60a1c.jpg', owner_id: ["asd"], members: ["asd"], messages: [], created_at: new Date().toString(), _id: "a56sd456a4sd"},
-      {name: "test4", description: "desc test", image: 'https://www.collinsdictionary.com/images/full/river_377603497_1000.jpg', owner_id: ["asd"], members: ["asd"], messages: [], created_at: new Date().toString(), _id: "5a4sd654asd6"},
-    ]
+  get chatRoomsDisplay(): IChatroom[] | undefined {
+    const start = (this.activepage - 1) * 4;
+    const end = start + 4;
+    if (this.chatRooms) return this.chatRooms?.slice(start, end);
+    else return undefined;
+  }
+
+  get pagesDisplay(): number[] {
+    const arr: number[] = [];
+    const limit: number | undefined = this.chatRooms ? this.chatRooms.length : undefined;
+    let number: number = 1;
+
+    if (!limit) return [1];
+
+    for (let index = 0; index < limit; index += 4) {
+      arr.push(number++);
+    }
+
+    return arr;
   }
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private chatroomService: ChatroomService
   ) {
-    this.pages = [1, 2, 3, 4];
+    this.pages = [1];
     this.activepage = 1;
+    this.chatRooms = undefined;
+    this.search = "";
+    this.noChatroom = {
+      _id: "string",
+      name: "No chatrooms",
+      description: "There are no chatrooms created yet.",
+      image: "https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png",
+      creator: "creator",
+      members: ["members"],
+      messages: ["messages"],
+      created_at: "1/1/1",
+    }
   }
 
-  ngOnInit(): void {}
-
-  goToRegister() {
-    return this.router.navigate(['/register']);
+  ngOnInit(): void {
+    this.getChatrooms(undefined);
   }
 
-  goToLogin() {
-    return this.router.navigate(['/login']);
+  goToRegister(): void {
+    this.router.navigate(['/register']);
   }
 
-  setActivepage(page: number) {
+  goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  setActivepage(page: number): void {
     this.activepage = page;
+  }
+
+  getChatrooms(form: NgForm | undefined): void {
+    let { search } = form != undefined ? form.value : { search: "" };
+
+    this.chatroomService.getChatrooms(search).subscribe(data => {
+      this.chatRooms = data.chatrooms;
+    });
+  }
+
+  changePage(command: string) {
+    switch (command) {
+      case 'first':
+        this.activepage = 1;
+        break;
+      case 'previous':
+        this.activepage = Math.max(1, this.activepage - 1);
+        break;
+      case 'next':
+        this.activepage = Math.min(this.activepage + 1, Math.ceil(this.chatRooms!.length / 4));
+        break;
+      case 'last':
+        this.activepage = Math.ceil(this.chatRooms!.length / 4);
+        break;
+      default:
+        console.log(command, "is unknown command");
+    }
   }
 }

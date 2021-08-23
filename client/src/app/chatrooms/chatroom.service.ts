@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 // Environment const
 import { environment } from '../../environments/environment';
+import { IUser } from '../shared/interfaces';
 const API_URL = environment.apiURL;
 
 @Injectable({
@@ -28,10 +29,16 @@ export class ChatroomService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        Authorization: `Bearer ${user}`
+        Authorization: `Bearer ${JSON.stringify(user!._id)}`
       })
     };
 
     return this.http.post<any>(`${API_URL}/api/chatrooms/create`, {name, description, image, creator}, httpOptions);
+  }
+
+  getChatrooms(searchString: string = ""){
+    const criteria = encodeURI(searchString);
+    
+    return this.http.get<any>(`${API_URL}/api/chatrooms/?criteria=${criteria}`);
   }
 }
