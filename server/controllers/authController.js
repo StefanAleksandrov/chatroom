@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { COOKIE_NAME } = require('../config/config');
+const { COOKIE_NAME } = require('../config/config');
 
 //Services
 const authService = require('../services/authService');
@@ -37,8 +37,8 @@ router.post('/login', (req, res, next) => {
     authService.login(email, password)
         .then(data => {
             res.status(200)
-                // .cookie(COOKIE_NAME, data[0], {HttpOnly: true, path:"/login", secure: false, SameSite: "None"})
-                // .cookie("email", data[1].email, {HttpOnly: true, path:"/login", secure: false, SameSite: "None"})
+                .cookie(COOKIE_NAME, data[0], {HttpOnly: true, path:"/", secure: false, SameSite: "None"})
+                .cookie("email", data[1].email, {HttpOnly: true, path:"/", secure: false, SameSite: "None"})
                 .json({ token: data[0], user: data[1] });
                 // .send();
         })
