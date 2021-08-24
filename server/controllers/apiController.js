@@ -43,8 +43,41 @@ router.post('/chatrooms/create', (req, res, next) => {
         .catch(next);
 });
 
-router.post('/chatrooms/edit', (req, res) => {
+router.post('/chatrooms/join', (req, res, next) => {
+    const { user_id, chatroom_id } = req.body;
+    
+    authService.addUserChatroom(user_id, chatroom_id)
+        .then(() => {
+            return apiService.addChatroomMember(user_id, chatroom_id);
+        }).then(() => {
+            res.status(200).json({message: "ok"}).send();
+        }).catch(next);
+});
+
+router.post('/chatrooms/leave', (req, res, next) => {
+    const { user_id, chatroom_id } = req.body;
+    
+    authService.removeUserChatroom(user_id, chatroom_id)
+        .then(() => {
+            return apiService.removeChatroomMember(user_id, chatroom_id);
+        }).then(() => {
+            res.status(200).json({message: "ok"}).send();
+        }).catch(next);
+});
+
+router.post('/chatrooms/edit', (req, res, next) => {
     const { } = req.body;
+    // TODO
+});
+
+//DELETE
+router.delete('/chatrooms/delete', (req, res, next) => {
+    console.log("DELETE REQUEST");
+    
+    apiService.deleteChatroom(chatroom_id)
+        .then(() => {
+            res.status(200).json({message: "ok"}).send();
+        }).catch(next);
 });
 
 module.exports = router;

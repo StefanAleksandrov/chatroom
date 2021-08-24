@@ -36,11 +36,21 @@ const auth = {
         return User.findOne({email});
     },
 
-    addUserChatroom(_id, chatroomId) {
-        User.findById(_id).then(user => {
-            user.chatrooms.push(chatroomId);
-            return user.update();
-        })
+    addUserChatroom(user_id, chatroom_id) {
+        return User.findById(user_id)
+                    .then(user => {
+                        return user.updateOne({chatrooms: [...user.chatrooms, chatroom_id]});
+                    });
+    },
+
+    removeUserChatroom(user_id, chatroom_id){
+        return User.findById(user_id)
+                    .then(user => {
+                        const index = Number(user.chatrooms.indexOf(chatroom_id));
+                        user.chatrooms.splice(index, 1);
+                        return user.updateOne({chatrooms: [...user.chatrooms]});
+                    });
+
     }
 }
 

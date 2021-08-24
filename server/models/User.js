@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
 
     chatrooms: [{
         type: mongoose.Types.ObjectId,
-        ref: Chatroom
+        ref: "Chatroom"
     }],
 
     role: {

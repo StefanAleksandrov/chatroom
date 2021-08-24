@@ -11,12 +11,12 @@ const MessageSchema = new mongoose.Schema({
 
     author: [{
         type: mongoose.Types.ObjectId,
-        ref: User
+        ref: "User"
     }],
 
     chatroom: [{
         type: mongoose.Types.ObjectId,
-        ref: Chatroom
+        ref: "Chatroom"
     }],
 
     created_at: {
