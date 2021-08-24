@@ -38,19 +38,17 @@ router.post('/login', (req, res, next) => {
         .then(data => {
             res.status(200)
                 .cookie(COOKIE_NAME, data[0], {HttpOnly: true, path:"/", secure: false, SameSite: "None"})
-                .cookie("email", data[1].email, {HttpOnly: true, path:"/", secure: false, SameSite: "None"})
-                .json({ token: data[0], user: data[1] });
-                // .send();
+                .json({ token: data[0], user: data[1] })
+                .send();
         })
         .catch(next);
 });
 
 router.post('/logout', (req, res, next) => {
     res.status(200)
-        // .cookie(COOKIE_NAME, data[0], { httpOnly: true })
-        // .cookie('email', data[1].email)
-        .json({ message: "success" });
-        // .send();
+        .clearCookie(COOKIE_NAME)
+        .json({ message: "success" })
+        .send();
 });
 
 module.exports = router;
