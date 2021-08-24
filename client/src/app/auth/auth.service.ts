@@ -43,10 +43,11 @@ export class AuthService {
     return this.http.post<any>(`${API_URL}/auth/register`, {email, password, repeatPassword});
   }
 
-  logout() :void {
+  logout() {
     this.user = undefined;
     this.localStorage.removeItem('<USER>');
     this.localStorage.removeItem('<TOKEN>');
+    return this.http.post<any>(`${API_URL}/auth/logout`, {});
   }
 
   setUser(user: IUser, token: string): void {
