@@ -4,11 +4,11 @@
     <p class="card-description">{{chatroom!.description}}</p>
     <p class="card-date">{{chatroom!.created_at | date : 'MM/dd/YYYY, HH:mm:ss'}}</p>
 
-    <section class="modify">
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>
+    <section *ngIf="user!._id == chatroom!.creator" class="modify">
+        <button class="edit" (click)="editChatroom()" >Edit</button>
+        <button class="delete" (click)="deleteChatroom()" >Delete</button>
     </section>
 
-    <!-- <button class="join">Join</button> -->
-    <!-- <button class="leave">Leave</button> -->
+    <button *ngIf="(user!._id != chatroom!.creator) && (!chatroom!.members.includes(user!._id))" (click)="joinChatroom()" class="join">Join</button>
+    <button *ngIf="(user!._id != chatroom!.creator) && (chatroom!.members.includes(user!._id))" (click)="leaveChatroom()" class="leave">Leave</button>
 </section>
