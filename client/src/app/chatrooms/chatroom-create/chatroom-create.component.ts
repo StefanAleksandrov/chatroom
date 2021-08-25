@@ -32,11 +32,7 @@ export class ChatroomCreateComponent implements OnInit {
         this.chatroomService.getChatroomById(params.id).subscribe(chatroom => {
           this.chatroom = chatroom;
         }, error => {
-          this.notificationService.setNotification({
-            message: "Something went wrong. " + error,
-            type: "error"
-          });
-
+          console.log(error);
         })
       });
   }
@@ -75,7 +71,6 @@ export class ChatroomCreateComponent implements OnInit {
           type: "error"
         });
       });
-
     }
   }
 }

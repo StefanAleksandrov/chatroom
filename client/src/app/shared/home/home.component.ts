@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit {
 
     this.chatroomService.getChatrooms(search).subscribe(data => {
       this.chatRooms = data.chatrooms;
+      this.activepage = 1;
     });
   }
 
@@ -111,7 +112,6 @@ export class HomeComponent implements OnInit {
   }
 
   removeChatroom(chatroom_id: string) {
-    console.log(chatroom_id);
     this.chatRooms = this.chatRooms?.filter(el => el._id != chatroom_id);
   }
 }
