@@ -46,7 +46,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/logout', (req, res, next) => {
     res.status(200)
-        .clearCookie(COOKIE_NAME)
+        .clearCookie(COOKIE_NAME, {HttpOnly: true, path:"/", secure: false, SameSite: "None"})
         .json({ message: "success" })
         .send();
 });

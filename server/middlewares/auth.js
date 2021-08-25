@@ -6,7 +6,7 @@ module.exports = function auth(req, res, next) {
 
     if (token) {
         jwt.verify(token, SECRET, function(err, decoded) {
-            if (err) res.clearcookie(COOKIE_NAME);
+            if (err) res.clearcookie(COOKIE_NAME, {HttpOnly: true, path:"/", secure: false, SameSite: "None"});
             else req.user = decoded;
         });
 

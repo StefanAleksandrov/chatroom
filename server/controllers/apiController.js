@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const { json } = require('express');
 //Services
 const apiService = require('../services/apiService');
 const authService = require('../services/authService');
@@ -9,11 +10,18 @@ const authService = require('../services/authService');
 //GET
 router.get('/chatrooms', (req, res, next) => {
     const criteria = req.query.criteria;
+    const chatroom_id = req.query.id;
 
     if (criteria && criteria.length > 0 && typeof criteria == 'string') {
         apiService.getChatroomsByName(criteria)
             .then(chatrooms => {
                 res.json({ chatrooms });
+            }).catch(next);
+
+    } else if (chatroom_id){
+        apiService.getChatroomById(chatroom_id)
+            .then(chatroom => {
+                res.status(200).json(chatroom);
             }).catch(next);
 
     } else {
@@ -43,6 +51,14 @@ router.post('/chatrooms/create', (req, res, next) => {
         .catch(next);
 });
 
+router.post('/chatrooms/update', (req, res, next) => {
+    const { name, description, image, chatroom_id } = req.body;
+    apiService.updateChatroom(name, description, image, chatroom_id)
+        .then(() => {
+            res.status(200).json({ message: "ok" });
+        }).catch(next);
+});
+
 router.post('/chatrooms/join', (req, res, next) => {
     const { user_id, chatroom_id } = req.body;
     
@@ -65,16 +81,11 @@ router.post('/chatrooms/leave', (req, res, next) => {
         }).catch(next);
 });
 
-router.post('/chatrooms/edit', (req, res, next) => {
-    const { } = req.body;
-    // TODO
-});
-
 //DELETE
 router.delete('/chatrooms/delete', (req, res, next) => {
-    console.log("DELETE REQUEST");
+    const chatroom_id = req.query.id;
     
-    apiService.deleteChatroom(chatroom_id)
+    apiService.deleteChatroom({"_id": chatroom_id})
         .then(() => {
             res.status(200).json({message: "ok"}).send();
         }).catch(next);

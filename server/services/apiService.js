@@ -7,6 +7,13 @@ const auth = {
         return newChatroom.save();
     },
 
+    updateChatroom(name, description, image, chatroom_id){
+        return Chatroom.findById(chatroom_id)
+            .then(chatroom => {
+                return chatroom.updateOne({name, description, image});
+            });
+    },
+
     getChatrooms() {
         // Get all results
         return Chatroom.find().lean();
