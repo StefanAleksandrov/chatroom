@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 // Interfaces
 import { IChatroom } from '../shared/interfaces/chatroom';
-import { IUser } from '../shared/interfaces';
 
 // Services
 import { AuthService } from '../auth/auth.service';
@@ -36,10 +35,29 @@ export class ChatroomService {
     return this.http.post<any>(`${API_URL}/api/chatrooms/create`, {name, description, image, creator}, httpOptions);
   }
 
+  updateChatroom(name: string, description: string, image: string, chatroom_id: string){
+    const user = this.authService.getUser();
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: `Bearer ${JSON.stringify(user!._id)}`
+      })
+    };
+
+    return this.http.post<any>(`${API_URL}/api/chatrooms/update`, {name, description, image, chatroom_id}, httpOptions);
+  }
+
   getChatrooms(searchString: string = ""){
     const criteria = encodeURI(searchString);
     
     return this.http.get<any>(`${API_URL}/api/chatrooms/?criteria=${criteria}`);
+  }
+
+  getChatroomById(id: string){
+    const chatroom_id = encodeURI(id);
+    
+    return this.http.get<any>(`${API_URL}/api/chatrooms/?id=${chatroom_id}`);
   }
 
   joinChatroom(payload: object){

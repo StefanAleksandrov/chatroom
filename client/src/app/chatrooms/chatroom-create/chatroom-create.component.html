@@ -4,7 +4,7 @@
     <form #form="ngForm" (ngSubmit)="createChatroom(form)" >
         <label class="register-field">
             <span>Chatroom Name:</span>
-            <input #nameInput="ngModel" ngModel type="text" name="name" required [minlength]="4" />
+            <input #nameInput="ngModel" [ngModel]="chatroom ? chatroom.name : ''" type="text" name="name" required [minlength]="4" />
 
             <section *ngIf="nameInput.touched" class="error-holder">
                 <p *ngIf="nameInput.errors?.required" class="error">The Name is required</p>
@@ -14,7 +14,7 @@
 
         <label class="register-field">
             <span>Chatroom Description:</span>
-            <input #descriptionInput="ngModel" ngModel type="text" name="description" required [minlength]="10" />
+            <input #descriptionInput="ngModel" [ngModel]="chatroom ? chatroom.description : ''" type="text" name="description" required [minlength]="10" />
             
             <section *ngIf="descriptionInput.touched" class="error-holder">
                 <p *ngIf="descriptionInput.errors?.required" class="error">The Description is required</p>
@@ -24,7 +24,7 @@
 
         <label class="register-field">
             <span>Chatroom Image URL:</span>
-            <input #imageInput="ngModel" ngModel type="text" name="image" required [minlength]="5" url />
+            <input #imageInput="ngModel" [ngModel]="chatroom ? chatroom.image : ''" type="url" name="image" required [minlength]="5" url />
             
             <section *ngIf="imageInput.touched" class="error-holder">
                 <p *ngIf="imageInput.errors?.required" class="error">The Image URL is required</p>
@@ -33,6 +33,6 @@
             </section>
         </label>
 
-        <input class="register-field submit" type="submit" value="submit" [disabled]="(nameInput.errors?.required || nameInput.errors?.minlength) || (descriptionInput.errors?.required || descriptionInput.errors?.minlength) || (imageInput.errors?.required || imageInput.errors?.minlength)" />
+        <input class="register-field submit" type="submit" value="submit" [disabled]="!chatroom && ((nameInput.errors?.required || nameInput.errors?.minlength) || (descriptionInput.errors?.required || descriptionInput.errors?.minlength) || (imageInput.errors?.required || imageInput.errors?.minlength))" />
     </form>
 </section>

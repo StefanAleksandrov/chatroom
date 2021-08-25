@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatroomCreateComponent } from './chatroom-create/chatroom-create.component';
 
-import { ChatroomDetailsComponent } from './chatroom-details/chatroom-details.component';
+// Components
+import { ChatroomCreateComponent } from './chatroom-create/chatroom-create.component';
 import { ChatroomListComponent } from './chatroom-list/chatroom-list.component';
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
             {
                 path: ':id',
                 pathMatch: 'full',
-                component: ChatroomDetailsComponent
+                component: ChatroomCreateComponent
             }
         ]
     }

@@ -38,14 +38,12 @@ export class ChatroomCardComponent implements OnInit {
   }
 
   editChatroom(){
-    console.log(this.prepareData());
-    this.router.navigate([`/${this.chatroom!._id}`]);
+    this.router.navigate([`chatrooms/${this.chatroom!._id}`]);
   }
 
   deleteChatroom(){
     if (confirm("Are you sure you want to delete this chatroom?")){
       this.chatroomService.deleteChatroom(this.chatroom!._id).subscribe(resp => {
-        console.log("From child");
         this.removeChatroom.emit(this.chatroom!._id);
       });
     }
