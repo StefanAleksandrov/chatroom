@@ -75,10 +75,10 @@ body {
     .login-field,
     .register-field {
         display: block;
-        font-size: 2rem;
+        font-size: 1.75rem;
 
         span {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: bold;
             text-align: center;
             width: 100%;
@@ -92,7 +92,7 @@ body {
             text-align: center;
             border-radius: 5px;
             border: none;
-            font-size: 2rem;
+            font-size: 1.75rem;
             background-color: var(--lighter-purple);
 
             &.ng-invalid.ng-touched {
