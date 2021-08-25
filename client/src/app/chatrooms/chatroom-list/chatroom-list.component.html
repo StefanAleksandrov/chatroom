@@ -20,8 +20,14 @@
     </article>
 
     <article class="active-chat">
-        <section *ngIf="this.activeChat" class="active-chat">
+        <section *ngIf="this.activeChat" class="chat-area">
+            <article class="chat-messages">
+                <h3>HELLO WORLD</h3>
+            </article>
 
+            <article class="chat-input">
+                <textarea name="message"></textarea>
+            </article>
         </section>
 
         <section *ngIf="!this.activeChat" class="active-chat none">
