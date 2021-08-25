@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LocalStorage } from './injection-tokens';
 import { ChatroomsModule } from '../chatrooms/chatrooms.module';
 import { FormsModule } from '@angular/forms';
+import { AuthActivate } from './guards/auth.activate';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     {
       provide: LocalStorage,
       useValue: window.localStorage
-    }
+    },
+    AuthActivate
   ]
 })
 export class SharedModule { }
