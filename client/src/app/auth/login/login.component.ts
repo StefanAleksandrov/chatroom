@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Services
 import { AuthService } from '../auth.service';
@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private notificationService: NotificationService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(form: NgForm) :void {
     const {email, password} = form.value;
@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
         type: "success"
       });
 
-      this.router.navigate(['/']);
+      const redirectUrl = this.activatedRoute.snapshot.queryParams.redirectUrl || '/';
+      this.router.navigate([redirectUrl]);
     }, error => {
       this.notificationService.setNotification({
         message: error.error.error_message,
