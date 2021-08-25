@@ -1,11 +1,26 @@
 .profile-page {
     margin: 5rem 10rem 0;
     display: flex;
+    align-items: flex-start;
     color: var(--light-purple);
 
-    .profile-img {
+    .profile-info {
         flex-basis: 20%;
-        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        .profile-img {
+            border-radius: 50%;
+            margin-top: 1.25rem;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 2rem;
+        }
     }
 
     .profile-general-info {
@@ -34,14 +49,21 @@
         align-items: center;
         justify-content: center;
 
-        h2 {
+        h2
+        ,h3 {
             text-align: center;
             color: var(--white);
         }
 
+        h3 {
+            color: var(--purple);
+            margin-top: 1rem;
+            font-size: 1.4rem;
+        }
+
         p {
             text-align: center;
-            color: var(--purple);
+            color: var(--white);
             font-weight: bold;
         }
     }

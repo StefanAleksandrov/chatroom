@@ -1,18 +1,21 @@
 <section class="profile-page">
-    <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Profile image" class="profile-img" />
+    <article class="profile-info">
+        <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Profile image" class="profile-img" />
+        <h2>{{user!.email.split("@")[0]}}</h2>
+    </article>
 
     <section class="profile-general-info">
-        <article class="email">
+        <article>
             <h2>User email:</h2>
             <p>{{user!.email}}</p>
         </article>
 
-        <article class="email">
+        <article>
             <h2>User role:</h2>
             <p>{{user!.role}}</p>
         </article>
         
-        <article class="email">
+        <article>
             <h2>Register date:</h2>
             <p>{{user!.register_date | date : 'MM/dd/YYYY, HH:mm:ss'}}</p>
         </article>
@@ -21,14 +24,14 @@
     <section class="profile-chat-info">
         <h2>User chatrooms:</h2>
 
-        <article class="chats">
-            <h2>Created:</h2>
-            <p>{{user!.chatrooms | json}}</p>
+        <article>
+            <h3>Created chatrooms:</h3>
+            <p *ngFor="let chatroom of createdChatrooms">{{chatroom.name | json}}</p>
         </article>
 
-        <article class="chats">
-            <h2>Joined:</h2>
-            <p>{{user!.chatrooms | json}}</p>
+        <article>
+            <h3>Joined chatrooms:</h3>
+            <p *ngFor="let chatroom of joinedChatrooms">{{chatroom.name | json}}</p>
         </article>
     </section>
 </section>
