@@ -25,7 +25,7 @@
             </section>
 
             <section *ngIf="chatRooms && chatRooms.length > 0" class="cards">
-                <app-chatroom-card *ngFor="let chatroom of chatRoomsDisplay" [chatroom]="chatroom" ></app-chatroom-card>
+                <app-chatroom-card *ngFor="let chatroom of chatRoomsDisplay" [chatroom]="chatroom" (removeChatroom)="removeChatroom($event)" ></app-chatroom-card>
             </section>
 
             <section *ngIf="!chatRooms" class="cards">

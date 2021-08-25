@@ -51,6 +51,7 @@ export class ChatroomService {
   }
 
   deleteChatroom(chatroom_id: string){
-    return this.http.delete(`${API_URL}/api/chatrooms/delete/${chatroom_id}`);
+    const id = encodeURI(chatroom_id);
+    return this.http.delete(`${API_URL}/api/chatrooms/delete/?id=${id}`);
   }
 }

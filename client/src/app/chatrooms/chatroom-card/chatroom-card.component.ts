@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { IUser } from 'src/app/shared/interfaces';
 import { IChatroom } from 'src/app/shared/interfaces/chatroom';
@@ -12,10 +13,12 @@ import { ChatroomService } from '../chatroom.service';
 })
 export class ChatroomCardComponent implements OnInit {
   @Input() chatroom:IChatroom | undefined = undefined;
+  @Output() removeChatroom = new EventEmitter();
 
   user: IUser | undefined
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private chatroomService: ChatroomService,
     private notificationService: NotificationService
@@ -36,12 +39,15 @@ export class ChatroomCardComponent implements OnInit {
 
   editChatroom(){
     console.log(this.prepareData());
-
+    this.router.navigate([`/${this.chatroom!._id}`]);
   }
 
   deleteChatroom(){
     if (confirm("Are you sure you want to delete this chatroom?")){
-      this.chatroomService.deleteChatroom(this.chatroom!._id);
+      this.chatroomService.deleteChatroom(this.chatroom!._id).subscribe(resp => {
+        console.log("From child");
+        this.removeChatroom.emit(this.chatroom!._id);
+      });
     }
   }
 

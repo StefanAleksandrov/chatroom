@@ -109,4 +109,9 @@ export class HomeComponent implements OnInit {
         console.log(command, "is unknown command");
     }
   }
+
+  removeChatroom(chatroom_id: string) {
+    console.log(chatroom_id);
+    this.chatRooms = this.chatRooms?.filter(el => el._id != chatroom_id);
+  }
 }
