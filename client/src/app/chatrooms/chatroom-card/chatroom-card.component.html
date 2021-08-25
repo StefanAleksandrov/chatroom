@@ -3,6 +3,7 @@
     <h2 class="card-heading">{{chatroom!.name}}</h2>
     <p class="card-description">{{chatroom!.description}}</p>
     <p class="card-date">{{chatroom!.created_at | date : 'MM/dd/YYYY, HH:mm:ss'}}</p>
+    <p class="card-members">Chatroom members: <span class="color">{{chatroom!.members.length}}</span></p>
 
     <section *ngIf="user!._id == chatroom!.creator" class="modify">
         <button class="edit" (click)="editChatroom()" >Edit</button>
