@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../config/config');
 
-const Chatroom = require('./Chatroom');
-
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,

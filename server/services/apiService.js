@@ -46,6 +46,13 @@ const auth = {
                         });
     },
 
+    addChatroomMessage(message_id, chatroom_id){
+        return Chatroom.findById(chatroom_id)
+                        .then(chatroom => {
+                            return chatroom.updateOne({messages: [...chatroom.messages, message_id]});
+                        });
+    },
+
     removeChatroomMember(user_id, chatroom_id){
         return Chatroom.findById(chatroom_id)
                         .then(chatroom => {

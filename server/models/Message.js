@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 
-const User = require('./User');
-const Chatroom = require('./Chatroom');
-
 const MessageSchema = new mongoose.Schema({
     content: {
         type: String,
-        required: true,
+        required: true
     },
 
-    author: [{
-        type: mongoose.Types.ObjectId,
-        ref: "User"
-    }],
+    author: {
+        type: String,
+        required: true
+    },
 
-    chatroom: [{
-        type: mongoose.Types.ObjectId,
-        ref: "Chatroom"
-    }],
+    chatroom: {
+        type: String,
+        required: true
+    },
 
     created_at: {
         type: String,
