@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-const { json } = require('express');
 //Services
 const apiService = require('../services/apiService');
 const authService = require('../services/authService');

@@ -1,0 +1,17 @@
+const router = require('express').Router();
+
+//Services
+// const socketService = require('../services/socketService');
+
+//Middlewares
+
+//GET
+router.get('/', (req, res, next) => {
+    console.log("HERE");
+    console.log("SOCKET");
+    const io = req.app.get('socket-io');
+
+    io.emit('broadcast-message', socket.id);
+});
+
+module.exports = router;
