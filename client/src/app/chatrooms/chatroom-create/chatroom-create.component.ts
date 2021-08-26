@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { ChatroomService } from '../chatroom.service';
 import { AuthService } from 'src/app/auth/auth.service';
+
+// Interfaces
 import { IChatroom } from 'src/app/shared/interfaces/chatroom';
 
 @Component({
