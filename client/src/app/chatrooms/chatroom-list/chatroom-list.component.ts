@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+
+// Interfaces
 import { IChatroom } from 'src/app/shared/interfaces/chatroom';
+
+// Services
+import { AuthService } from 'src/app/auth/auth.service';
 import { ChatroomService } from '../chatroom.service';
+import { SocketService } from '../socket.service';
+
+// Interfaces
+import { IMessage } from 'src/app/shared/interfaces/message';
 
 @Component({
   selector: 'app-chatroom-list',
@@ -12,14 +21,19 @@ import { ChatroomService } from '../chatroom.service';
 export class ChatroomListComponent implements OnInit {
   chatrooms : IChatroom[] | undefined;
   activeChat : string | undefined;
+  messages : IMessage[] | undefined;
+  isSubscribed : boolean;
 
   constructor(
-    private router: Router,
     private chatroomService: ChatroomService,
-    private authService: AuthService
+    private socketService: SocketService,
+    private authService: AuthService,
+    private router: Router,
   ) {
     this.chatrooms = undefined;
     this.activeChat = undefined;
+    this.messages = undefined;
+    this.isSubscribed = false;
   }
 
   ngOnInit(): void {
@@ -27,8 +41,27 @@ export class ChatroomListComponent implements OnInit {
   }
 
   activateChat(id: string) {
-    if (id == this.activeChat) this.activeChat = undefined;
-    else this.activeChat = id;
+    if (id == this.activeChat){
+      this.activeChat = undefined;
+
+    } else {
+      this.activeChat = id;
+      this.socketService.connect();
+      this.socketService.emit('join-room', undefined, this.activeChat);
+      this.socketService.emit('get-all-messages', undefined, this.activeChat);
+
+      // We subscribe only once
+      if (!this.isSubscribed){
+        this.socketService.listen('broadcast-message').subscribe((data: IMessage) => {
+          console.log(this.messages, data);
+          
+          if (this.messages) this.messages.push(data);
+          else this.messages = [data];
+        });
+
+        this.isSubscribed = true;
+      }
+    }
   }
 
   createNewChatroom() {
@@ -42,5 +75,27 @@ export class ChatroomListComponent implements OnInit {
         return el.members.includes(user!._id)
       });
     });
+  }
+
+  sendMessage(form: NgForm){
+    const { message } = form.value;
+    const user = this.authService.getUser();
+    const author = user!._id;
+
+    const msg: IMessage = {
+      _id: '',
+      content: message,
+      author,
+      chatroom: this.activeChat!,
+      created_at: new Date().toString()
+    }
+    
+    this.socketService.emit("send-message", msg, msg.chatroom);
+
+    // We add the message to the messages array
+    if (this.messages) this.messages.push(msg);
+    else this.messages = [msg];
+
+    form.reset();
   }
 }
