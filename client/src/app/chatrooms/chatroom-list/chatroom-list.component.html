@@ -26,8 +26,9 @@
             </article>
 
             <article class="chat-input">
-                <form #form="ngForm" (ngSubmit)="sendMessage(form)" class="message">
-                    <input ngModel type="text" name="message" />
+                <form #form="ngForm" (ngSubmit)="sendMessage(form)" class="chat-input-container">
+                    <input ngModel type="text" name="message" class="chat-input-field" placeholder="Message..." autocomplete="off" />
+                    <input type="submit" value="Send" class="chat-input-submit">
                 </form>
             </article>
         </section>

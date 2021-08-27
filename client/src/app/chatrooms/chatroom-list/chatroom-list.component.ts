@@ -45,16 +45,16 @@ export class ChatroomListComponent implements OnInit {
       this.activeChat = undefined;
 
     } else {
+      // If we switch rooms, we leave the old room
+      if (this.activeChat) this.socketService.emit('leave-room', undefined, this.activeChat);
+
       this.activeChat = id;
       this.socketService.connect();
       this.socketService.emit('join-room', undefined, this.activeChat);
-      this.socketService.emit('get-all-messages', undefined, this.activeChat);
 
       // We subscribe only once
       if (!this.isSubscribed){
         this.socketService.listen('broadcast-message').subscribe((data: IMessage) => {
-          console.log(this.messages, data);
-          
           if (this.messages) this.messages.push(data);
           else this.messages = [data];
         });
@@ -92,6 +92,8 @@ export class ChatroomListComponent implements OnInit {
     
     this.socketService.emit("send-message", msg, msg.chatroom);
 
+    msg.author = "Me";
+    
     // We add the message to the messages array
     if (this.messages) this.messages.push(msg);
     else this.messages = [msg];
