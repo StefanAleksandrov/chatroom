@@ -26,3 +26,4 @@
 ### Custom server made with Node.js, Express and Mongoose (MongoDB)
 ### Custom authentication using cookies and JWT
 ### RESTfull API for managing chatrooms and messages
+### Socket.IO for messages in the different chatrooms
