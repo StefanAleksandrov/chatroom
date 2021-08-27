@@ -2,7 +2,7 @@
     background: var(--dark-purple);
     border-radius: 0.5rem;
     width: fit-content;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    padding: 0.5rem 1rem;
     margin: 0.5rem 0;
     color: var(--white);
 
@@ -24,6 +24,12 @@
 
         &.message {
             font-size: 1.25rem;
+
+            span.time {
+                font-size: 0.75rem;
+                font-style: italic;
+                margin-left: 1rem;
+            }
         }
     }
 }

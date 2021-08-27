@@ -1,5 +1,9 @@
 <article class="message-container" [class.my-message]="message!.author == 'Me'">
     <p *ngIf="message!.author == 'Me'" class="author" >Me</p>
     <p *ngIf="message!.author != 'Me'" class="author" >{{message!.author!.email}}</p>
-    <p class="message">{{message!.content}}</p>
+
+    <p class="message">
+        {{message!.content}}
+        <span class="time">{{message!.created_at | date : "HH:mm:ss"}}</span>
+    </p>
 </article>
