@@ -33,7 +33,7 @@ const auth = {
     },
 
     getUserByEmail(email) {
-        return User.findOne({email});
+        return User.findOne({email}).lean();
     },
 
     addUserChatroom(user_id, chatroom_id) {

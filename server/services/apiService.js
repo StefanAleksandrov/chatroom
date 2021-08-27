@@ -23,20 +23,20 @@ const auth = {
         // Get filtered results
         return Chatroom.find({ name: { $regex: criteria, $options: "i" } }, function(err, docs) {
             return docs;
-        });
+        }).lean();
     },
 
     getMyChatrooms(user_id){
         // Get filtered results
-        return Chatroom.find({ members: {$elemMatch: {$ref: 'User', $id: user_id}}});
+        return Chatroom.find({ members: {$elemMatch: {$ref: 'User', $id: user_id}}}).lean();
     },
 
     getChatroomByName(name){
-        return Chatroom.findOne({name});
+        return Chatroom.findOne({name}).lean();
     },
 
     getChatroomById(_id){
-        return Chatroom.findOne({_id});
+        return Chatroom.findOne({_id}).lean();
     },
 
     addChatroomMember(user_id, chatroom_id){

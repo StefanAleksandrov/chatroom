@@ -9,7 +9,11 @@ const auth = {
     },
 
     getAllMessages(room){
-        return Message.find({chatroom: room});
+        return Message.find({chatroom: room}).populate('author').lean();
+    },
+
+    getMessageById(_id){
+        return Message.findOne({_id}).populate('author').lean();
     }
 }
 
