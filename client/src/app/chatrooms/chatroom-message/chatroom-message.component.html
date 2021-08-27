@@ -1,2 +1,5 @@
-<p>{{message!.author}}</p>
-<p>{{message!.content}}</p>
+<article class="message-container" [class.my-message]="message!.author == 'Me'">
+    <p *ngIf="message!.author == 'Me'" class="author" >Me</p>
+    <p *ngIf="message!.author != 'Me'" class="author" >{{message!.author!.email}}</p>
+    <p class="message">{{message!.content}}</p>
+</article>

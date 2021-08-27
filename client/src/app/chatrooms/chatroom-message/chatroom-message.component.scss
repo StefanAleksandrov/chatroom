@@ -1,0 +1,29 @@
+.message-container {
+    background: var(--dark-purple);
+    border-radius: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    margin: 0.5rem 0;
+    color: var(--white);
+
+    &.my-message {
+        margin-left: auto;
+        background: var(--purple);
+        color: var(--black);
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+
+        &.author {
+            font-size: 0.75rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        &.message {
+            font-size: 1.25rem;
+        }
+    }
+}
