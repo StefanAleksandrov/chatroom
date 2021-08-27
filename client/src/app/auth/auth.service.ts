@@ -62,6 +62,14 @@ export class AuthService {
     this.localStorage.setItem('<USER>', JSON.stringify(this.user));
   }
 
+  removeUserChatroom(chatroom: IChatroom): void {
+    this.user!.chatrooms = this.user!.chatrooms.filter(chat => {
+      return chatroom._id != chat._id;
+    });
+
+    this.localStorage.setItem('<USER>', JSON.stringify(this.user));
+  }
+
   getUser() :IUser | undefined {
     return this.user;
   }

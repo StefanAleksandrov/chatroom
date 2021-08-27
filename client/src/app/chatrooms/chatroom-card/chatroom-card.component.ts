@@ -60,7 +60,8 @@ export class ChatroomCardComponent implements OnInit {
   leaveChatroom() {
     this.chatroomService.leaveChatroom(this.prepareData()).subscribe(() => {
       const index = Number(this.chatroom?.members.indexOf(this.user!._id));
-      this.chatroom?.members.splice(index, 1);
+      this.chatroom!.members.splice(index, 1);
+      this.authService.removeUserChatroom(this.chatroom!);
       this.notificationService.setNotification({ message: "You left the chatroom", type: "success" })
     });
   }
