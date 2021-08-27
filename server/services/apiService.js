@@ -41,7 +41,7 @@ const auth = {
     },
 
     getMessagesPerChatroomId(chatroom){
-        return Chatroom.find({chatroom}).lean();
+        return Message.find({chatroom}).populate('author');
     },
 
     addChatroomMember(user_id, chatroom_id){
