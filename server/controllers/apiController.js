@@ -31,6 +31,20 @@ router.get('/chatrooms', (req, res, next) => {
     }
 });
 
+router.get('/messages', (req, res, next) => {
+    const chatroom_id = req.query.id;
+
+    if (chatroom_id){
+        apiService.getMessagesPerChatroomId(chatroom_id)
+            .then(messages => {
+                res.status(200).json(messages);
+            }).catch(next);
+
+    } else {
+        res.status(404).json({ message: "Please provide all required information!" })
+    }
+});
+
 //POST
 router.post('/chatrooms/create', (req, res, next) => {
     const { name, description, image, creator } = req.body;

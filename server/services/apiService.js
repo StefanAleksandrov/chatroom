@@ -1,4 +1,5 @@
 const Chatroom = require('../models/Chatroom');
+const Message = require('../models/Message');
 const User = require('../models/User');
 
 const auth = {
@@ -37,6 +38,10 @@ const auth = {
 
     getChatroomById(_id){
         return Chatroom.findOne({_id}).lean();
+    },
+
+    getMessagesPerChatroomId(chatroom){
+        return Chatroom.find({chatroom}).lean();
     },
 
     addChatroomMember(user_id, chatroom_id){
