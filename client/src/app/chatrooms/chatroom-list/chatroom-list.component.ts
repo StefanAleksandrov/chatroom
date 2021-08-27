@@ -48,19 +48,27 @@ export class ChatroomListComponent implements OnInit {
       // If we switch rooms, we leave the old room
       if (this.activeChat) this.socketService.emit('leave-room', undefined, this.activeChat);
 
+      this.chatroomService.getMessagesPerChatroom(id).subscribe((messages) => {
+        this.messages = messages.map((message: IMessage): IMessage => {
+          if (message.author._id == this.authService.getUser()!._id) message.author = "Me";
+
+          return message;
+        });
+
+        // We subscribe only once and only after we receive all the messages
+        if (!this.isSubscribed){
+          this.socketService.listen('broadcast-message').subscribe((data: IMessage) => {
+            if (this.messages) this.messages.push(data);
+            else this.messages = [data];
+          });
+  
+          this.isSubscribed = true;
+        }
+      });
+
       this.activeChat = id;
       this.socketService.connect();
       this.socketService.emit('join-room', undefined, this.activeChat);
-
-      // We subscribe only once
-      if (!this.isSubscribed){
-        this.socketService.listen('broadcast-message').subscribe((data: IMessage) => {
-          if (this.messages) this.messages.push(data);
-          else this.messages = [data];
-        });
-
-        this.isSubscribed = true;
-      }
     }
   }
 
@@ -93,7 +101,7 @@ export class ChatroomListComponent implements OnInit {
     this.socketService.emit("send-message", msg, msg.chatroom);
 
     msg.author = "Me";
-    
+
     // We add the message to the messages array
     if (this.messages) this.messages.push(msg);
     else this.messages = [msg];

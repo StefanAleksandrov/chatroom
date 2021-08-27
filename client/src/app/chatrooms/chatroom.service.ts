@@ -60,6 +60,12 @@ export class ChatroomService {
     return this.http.get<any>(`${API_URL}/api/chatrooms/?id=${chatroom_id}`);
   }
 
+  getMessagesPerChatroom(id: string){
+    const chatroom_id = encodeURI(id);
+
+    return this.http.get<any>(`${API_URL}/api/messages/?id=${chatroom_id}`);
+  }
+
   joinChatroom(payload: object){
     return this.http.post<HttpResponse<object>>(`${API_URL}/api/chatrooms/join`, payload);
   }
