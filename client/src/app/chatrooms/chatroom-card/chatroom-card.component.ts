@@ -12,7 +12,7 @@ import { ChatroomService } from '../chatroom.service';
   styleUrls: ['./chatroom-card.component.scss']
 })
 export class ChatroomCardComponent implements OnInit {
-  @Input() chatroom:IChatroom | undefined = undefined;
+  @Input() chatroom: IChatroom | undefined = undefined;
   @Output() removeChatroom = new EventEmitter();
 
   user: IUser | undefined
@@ -30,37 +30,38 @@ export class ChatroomCardComponent implements OnInit {
     this.user = this.authService.getUser();
   }
 
-  prepareData():object{
+  prepareData(): object {
     return {
       user_id: this.user!._id,
       chatroom_id: this.chatroom!._id
     }
   }
 
-  editChatroom(){
+  editChatroom() {
     this.router.navigate([`chatrooms/${this.chatroom!._id}`]);
   }
 
-  deleteChatroom(){
-    if (confirm("Are you sure you want to delete this chatroom?")){
+  deleteChatroom() {
+    if (confirm("Are you sure you want to delete this chatroom?")) {
       this.chatroomService.deleteChatroom(this.chatroom!._id).subscribe(resp => {
         this.removeChatroom.emit(this.chatroom!._id);
       });
     }
   }
 
-  joinChatroom(){
+  joinChatroom() {
     this.chatroomService.joinChatroom(this.prepareData()).subscribe(() => {
-      this.chatroom?.members.push(this.user!._id);
-      this.notificationService.setNotification({message: "You joined the chatroom", type: "success"})
+      this.chatroom!.members.push(this.user!._id);
+      this.authService.addUserChatroom(this.chatroom!);
+      this.notificationService.setNotification({ message: "You joined the chatroom", type: "success" })
     });
   }
 
-  leaveChatroom(){
+  leaveChatroom() {
     this.chatroomService.leaveChatroom(this.prepareData()).subscribe(() => {
       const index = Number(this.chatroom?.members.indexOf(this.user!._id));
       this.chatroom?.members.splice(index, 1);
-      this.notificationService.setNotification({message: "You left the chatroom", type: "success"})
+      this.notificationService.setNotification({ message: "You left the chatroom", type: "success" })
     });
   }
 }

@@ -9,6 +9,7 @@ import { LocalStorage } from '../shared/injection-tokens';
 
 // Environment const
 import { environment } from '../../environments/environment';
+import { IChatroom } from '../shared/interfaces/chatroom';
 const API_URL = environment.apiURL;
 
 @Injectable({
@@ -54,6 +55,11 @@ export class AuthService {
     this.user = user;
     this.localStorage.setItem('<USER>', JSON.stringify(user));
     this.localStorage.setItem('<TOKEN>', token);
+  }
+
+  addUserChatroom(chatroom: IChatroom): void {
+    this.user?.chatrooms.push(chatroom);
+    this.localStorage.setItem('<USER>', JSON.stringify(this.user));
   }
 
   getUser() :IUser | undefined {
