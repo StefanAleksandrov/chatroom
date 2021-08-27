@@ -1,7 +1,9 @@
+import { IUser } from "./user";
+
 export interface IMessage {
     _id: string;
     content: string;
-    author: string;
+    author: any;
     chatroom: string;
     created_at: string;
 }
